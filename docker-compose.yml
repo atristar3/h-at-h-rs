@@ -1,0 +1,112 @@
+# =============================================================================
+# H@H-rs Docker Compose Configuration
+# =============================================================================
+#
+# Usage:
+#   1. Copy .env.example to .env and fill in your credentials
+#   2. Run: docker-compose up -d
+#   3. View logs: docker-compose logs -f
+#
+# =============================================================================
+
+services:
+  hah:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: hah-rs
+    restart: unless-stopped
+
+    # Port mapping - change the left side if 8080 is in use
+    ports:
+      - "${HAH_PORT:-8080}:8080"
+
+    # Volume mounts for persistent data
+    volumes:
+      # Cache directory - this is where all cached images are stored
+      - hah-cache:/app/cache
+      # Temp directory for downloads in progress
+      - hah-temp:/app/temp
+      # Database for tracking cache and gallery downloads
+      - hah-data:/app/data
+
+    # Environment variables from .env file
+    environment:
+      # Required: H@H credentials
+      - HAH_CLIENT_ID=${HAH_CLIENT_ID}
+      - HAH_CLIENT_KEY=${HAH_CLIENT_KEY}
+
+      # Server configuration
+      - HAH_PORT=8080
+      - HAH_BIND_ADDRESS=0.0.0.0
+
+      # Cache configuration
+      - HAH_CACHE_DIR=/app/cache
+      - HAH_TEMP_DIR=/app/temp
+      - HAH_DATABASE_PATH=/app/data/hah.db
+      - HAH_CACHE_SIZE_GB=${HAH_CACHE_SIZE_GB:-100}
+      - HAH_MAX_DISK_USAGE=${HAH_MAX_DISK_USAGE:-95}
+
+      # Gallery download settings
+      - HAH_GALLERY_DOWNLOAD=${HAH_GALLERY_DOWNLOAD:-true}
+      - HAH_GALLERY_API=${HAH_GALLERY_API:-https://api.e-hentai.org}
+      - HAH_DOWNLOAD_WORKERS=${HAH_DOWNLOAD_WORKERS:-4}
+
+      # ExHentai cookies (optional - for ExHentai access)
+      - HAH_EXHENTAI_MEMBER_ID=${HAH_EXHENTAI_MEMBER_ID:-}
+      - HAH_EXHENTAI_PASS_HASH=${HAH_EXHENTAI_PASS_HASH:-}
+      - HAH_EXHENTAI_IGNEOUS=${HAH_EXHENTAI_IGNEOUS:-}
+
+      # Logging
+      - HAH_LOG_LEVEL=${HAH_LOG_LEVEL:-info}
+      - HAH_LOG_JSON=${HAH_LOG_JSON:-true}
+
+      # Performance
+      - HAH_REQUEST_TIMEOUT=${HAH_REQUEST_TIMEOUT:-30}
+      - HAH_STATIC_RANGES=${HAH_STATIC_RANGES:-false}
+
+    # Resource limits (adjust based on your system)
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+        reservations:
+          memory: 256M
+
+    # Logging configuration
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
+        max-file: "3"
+
+    # Health check
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+# Named volumes for persistent storage
+volumes:
+  hah-cache:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ${HAH_CACHE_PATH:-./data/cache}
+
+  hah-temp:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ${HAH_TEMP_PATH:-./data/temp}
+
+  hah-data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ${HAH_DATA_PATH:-./data/db}

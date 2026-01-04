@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Reference - H@H-rs Documentation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'eh-bg': '#34353b',
+                        'eh-bg-dark': '#2a2b30',
+                        'eh-bg-light': '#3b3c42',
+                        'eh-header': '#43444a',
+                        'eh-border': '#4d4e53',
+                        'eh-text': '#f1f1f1',
+                        'eh-text-muted': '#b4b4b4',
+                        'eh-link': '#f5a623',
+                        'eh-link-hover': '#ffe082',
+                        'eh-accent': '#dd6b20',
+                        'eh-success': '#48bb78',
+                        'eh-info': '#4299e1',
+                        'eh-warning': '#ecc94b',
+                        'eh-danger': '#fc8181',
+                        'eh-get': '#48bb78',
+                        'eh-post': '#4299e1',
+                        'eh-delete': '#fc8181',
+                    },
+                    fontFamily: {
+                        'eh': ['Verdana', 'Geneva', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background: linear-gradient(180deg, #2a2b30 0%, #34353b 100%);
+        }
+        code { background: #2a2b30; padding: 2px 6px; border-radius: 3px; font-size: 0.875em; }
+        pre code { padding: 0; background: none; }
+        .method-get { background: #48bb7833; border-left: 3px solid #48bb78; }
+        .method-post { background: #4299e133; border-left: 3px solid #4299e1; }
+    </style>
+</head>
+<body class="font-eh text-eh-text min-h-screen">
+    <!-- Header -->
+    <header class="bg-eh-header border-b-2 border-eh-link shadow-lg">
+        <div class="max-w-6xl mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <h1 class="text-2xl font-bold text-eh-link">H@H-rs</h1>
+                    <span class="text-eh-text-muted text-sm">Documentation</span>
+                </div>
+                <nav class="flex space-x-6 text-sm">
+                    <a href="index.html" class="text-eh-text-muted hover:text-eh-link">Home</a>
+                    <a href="installation.html" class="text-eh-text-muted hover:text-eh-link">Installation</a>
+                    <a href="configuration.html" class="text-eh-text-muted hover:text-eh-link">Configuration</a>
+                    <a href="api.html" class="text-eh-link hover:text-eh-link-hover border-b-2 border-eh-link pb-1">API</a>
+                    <a href="https://github.com/atristar3/h-at-h-rs" class="text-eh-text-muted hover:text-eh-link">GitHub ↗</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Content -->
+    <main class="max-w-6xl mx-auto px-4 py-12">
+        <h2 class="text-3xl font-bold text-eh-link mb-2">REST API Reference</h2>
+        <p class="text-eh-text-muted mb-8">Complete API documentation for monitoring and controlling H@H-rs.</p>
+
+        <!-- Base URL -->
+        <div class="bg-eh-bg-dark border border-eh-border rounded-lg p-4 mb-8">
+            <h3 class="font-bold text-eh-text mb-2">Base URL</h3>
+            <code class="text-eh-link text-lg">http://localhost:8080</code>
+            <p class="text-eh-text-muted text-sm mt-2">Replace with your server's address and port.</p>
+        </div>
+
+        <!-- Quick Navigation -->
+        <nav class="bg-eh-bg-dark border border-eh-border rounded-lg p-4 mb-8">
+            <h3 class="font-bold text-eh-text mb-3">Endpoints</h3>
+            <div class="grid md:grid-cols-3 gap-2 text-sm">
+                <a href="#health" class="text-eh-link hover:text-eh-link-hover">Health & Status →</a>
+                <a href="#metrics" class="text-eh-link hover:text-eh-link-hover">Metrics →</a>
+                <a href="#cache" class="text-eh-link hover:text-eh-link-hover">Cache →</a>
+                <a href="#gallery" class="text-eh-link hover:text-eh-link-hover">Gallery Downloads →</a>
+                <a href="#archive" class="text-eh-link hover:text-eh-link-hover">Archive Downloads →</a>
+                <a href="#bandwidth" class="text-eh-link hover:text-eh-link-hover">Bandwidth →</a>
+            </div>
+        </nav>
+
+        <!-- Health & Status -->
+        <section id="health" class="mb-12">
+            <h3 class="text-xl font-bold text-eh-text mb-6 flex items-center">
+                <span class="text-eh-link mr-2">💓</span> Health & Status
+            </h3>
+
+            <!-- GET /api/health -->
+            <div class="mb-6">
+                <div class="method-get rounded-lg p-4 mb-3">
+                    <div class="flex items-center gap-3">
+                        <span class="bg-eh-get text-eh-bg-dark text-xs font-bold px-2 py-1 rounded">GET</span>
+                        <code class="text-eh-text font-bold">/api/health</code>
+                    </div>
+                    <p class="text-eh-text-muted text-sm mt-2">Basic health check endpoint</p>
+                </div>
+                <div class="bg-eh-bg border border-eh-border rounded-lg p-4">
+                    <h4 class="font-bold text-eh-text mb-2 text-sm">Response</h4>
+                    <pre class="text-sm overflow-x-auto"><code class="text-eh-text-muted">{
+  "success": true,
+  "data": {
+    "status": "healthy",
+    "version": "0.1.0"
+  }
+}</code></pre>
+                </div>
+            </div>
+
+            <!-- GET /api/status -->
+            <div class="mb-6">
+                <div class="method-get rounded-lg p-4 mb-3">
+                    <div class="flex items-center gap-3">
+                        <span class="bg-eh-get text-eh-bg-dark text-xs font-bold px-2 py-1 rounded">GET</span>
+                        <code class="text-eh-text font-bold">/api/status</code>
+                    </div>
+                    <p class="text-eh-text-muted text-sm mt-2">Detailed client status including connection info and statistics</p>
+                </div>
+                <div class="bg-eh-bg border border-eh-border rounded-lg p-4">
+                    <h4 class="font-bold text-eh-text mb-2 text-sm">Response</h4>
+                    <pre class="text-sm overflow-x-auto"><code class="text-eh-text-muted">{
+  "success": true,
+  "data": {
+    "version": "0.1.0",
+    "client_id": "123456",
+    "cache_size_bytes": 107374182400,
+    "cache_files": 50000,
+    "cache_hits": 12345,
+    "cache_misses": 123,
+    "bytes_served": 1099511627776,
+    "uptime_seconds": 86400,
+    "trust": 0.98,
+    "quality": 0.95,
+    "successful_serves": 12222,
+    "failed_serves": 123,
+    "current_connections": 5,
+    "peak_connections": 50,
+    "static_ranges_enabled": true,
+    "proxy_mode_enabled": false,
+    "gallery_download_enabled": true
+  }
+}</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Metrics -->
+        <section id="metrics" class="mb-12">
+            <h3 class="text-xl font-bold text-eh-text mb-6 flex items-center">
+                <span class="text-eh-link mr-2">📊</span> Metrics
+            </h3>
+
+            <!-- GET /api/metrics -->
+            <div class="mb-6">
+                <div class="method-get rounded-lg p-4 mb-3">
+                    <div class="flex items-center gap-3">
+                        <span class="bg-eh-get text-eh-bg-dark text-xs font-bold px-2 py-1 rounded">GET</span>
+                        <code class="text-eh-text font-bold">/api/metrics</code>
+                    </div>
+                    <p class="text-eh-text-muted text-sm mt-2">Detailed performance metrics</p>
+                </div>
+                <div class="bg-eh-bg border border-eh-border rounded-lg p-4">
+                    <h4 class="font-bold text-eh-text mb-2 text-sm">Response</h4>
+                    <pre class="text-sm overflow-x-auto"><code class="text-eh-text-muted">{
+  "success": true,
+  "data": {
+    "trust": 0.98,
+    "quality": 0.95,
+    "uptime_seconds": 86400,
+    "total_requests": 15000,
+    "successful_serves": 14500,
+    "failed_serves": 500,
+    "cache_hits": 14000,
+    "cache_misses": 1000,
+    "bytes_served": 1099511627776,
+    "bytes_received": 107374182400,
+    "avg_response_time_ms": 45.2,
+    "heartbeats_sent": 1440,
+    "heartbeats_success": 1438,
+    "current_connections": 5,
+    "peak_connections": 50,
+    "start_time": 1704067200,
+    "last_activity": 1704153600
+  }
+}</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cache -->
+        <section id="cache" class="mb-12">
+            <h3 class="text-xl font-bold text-eh-text mb-6 flex items-center">
+                <span class="text-eh-link mr-2">💾</span> Cache
+            </h3>
+
+            <!-- GET /api/cache/stats -->
+            <div class="mb-6">
+                <div class="method-get rounded-lg p-4 mb-3">
+                    <div class="flex items-center gap-3">
+                        <span class="bg-eh-get text-eh-bg-dark text-xs font-bold px-2 py-1 rounded">GET</span>
+                        <code class="text-eh-text font-bold">/api/cache/stats</code>
+                    </div>
+                    <p class="text-eh-text-muted text-sm mt-2">Cache statistics and usage information</p>
+                </div>
+                <div class="bg-eh-bg border border-eh-border rounded-lg p-4">
+                    <h4 class="font-bold text-eh-text mb-2 text-sm">Response</h4>
+                    <pre class="text-sm overflow-x-auto"><code class="text-eh-text-muted">{
+  "success": true,
+  "data": {
+    "total_files": 50000,
+    "total_size_bytes": 107374182400,
+    "max_size_bytes": 214748364800,
+    "usage_percent": 50.0,
+    "hits": 14000,
+    "misses": 1000,
+    "hit_rate": 0.933
+  }
+}</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery Downloads -->
+        <section id="gallery" class="mb-12">
+            <h3 class="text-xl font-bold text-eh-text mb-6 flex items-center">
+                <span class="text-eh-link mr-2">🖼️</span> Gallery Downloads
+            </h3>
+            <p class="text-eh-text-muted mb-4">Download galleries page-by-page via web scraping.</p>
+
+            <!-- POST /api/gallery/download -->
+            <div class="mb-6">
+                <div class="method-post rounded-lg p-4 mb-3">
+                    <div class="flex items-center gap-3">
+                        <span class="bg-eh-post text-eh-bg-dark text-xs font-bold px-2 py-1 rounded">POST</span>
+                        <code class="text-eh-text font-bold">/api/gallery/download</code>
+                    </div>
+                    <p class="text-eh-text-muted text-sm mt-2">Queue a gallery for download</p>
+                </div>
+
+                <div class="bg-eh-bg border border-eh-border rounded-lg p-4 mb-3">
+                    <h4 class="font-bold text-eh-text mb-2 text-sm">Request Body</h4>
+                    <pre class="text-sm overflow-x-auto"><code class="text-eh-text-muted"><span class="text-eh-success">// By URL</span>
+{
+  "url": "https://e-hentai.org/g/1234567/abcdef1234/"
+}
+
+<span class="text-eh-success">// By ID and token</span>
+{
+  "gallery_id": "1234567",
+  "gallery_token": "abcdef1234"
+}
+
+<span class="text-eh-success">// With page range</span>
+{
+  "gallery_id": "1234567",
+  "gallery_token": "abcdef1234",
+  "start_page": 1,
+  "end_page": 50
+}</code></pre>
+                </div>
+
+                <div class="bg-eh-bg border border-eh-border rounded-lg p-4">
+                    <h4 class="font-bold text-eh-text mb-2 text-sm">Response</h4>
+                    <pre class="text-sm overflow-x-auto"><code class="text-eh-text-muted">{
+  "success": true,
+  "data": {
+    "gallery_id": "1234567",
+    "status": "queued"
+  }
+}</code></pre>
+                </div>
+            </div>
+
+            <!-- GET /api/gallery/status/{id} -->
+            <div class="mb-6">
+                <div class="method-get rounded-lg p-4 mb-3">
+                    <div class="flex items-center gap-3">
+                        <span class="bg-eh-get text-eh-bg-dark text-xs font-bold px-2 py-1 rounded">GET</span>
+                        <code class="text-eh-text font-bold">/api/gallery/status/{gallery_id}</code>
+                    </div>
+                    <p class="text-eh-text-muted text-sm mt-2">Get download status for a gallery</p>
+                </div>
+                <div class="bg-eh-bg border border-eh-border rounded-lg p-4">
+                    <h4 class="font-bold text-eh-text mb-2 text-sm">Response</h4>
+                    <pre class="text-sm overflow-x-auto"><code class="text-eh-text-muted">{
+  "success": true,
+  "data": {
+    "gallery_id": "1234567",
+    "title": "Gallery Title",
+    "status": "downloading",
+    "total_pages": 100,
+    "downloaded_pages": 45,
+    "failed_pages": 0,
+    "created_at": 1704067200
+  }
+}</code></pre>
+                </div>
+            </div>
+
+            <!-- GET /api/gallery/list -->
+            <div class="mb-6">
+                <div class="method-get rounded-lg p-4 mb-3">
+                    <div class="flex items-center gap-3">
+                        <span class="bg-eh-get text-eh-bg-dark text-xs font-bold px-2 py-1 rounded">GET</span>
+                        <code class="text-eh-text font-bold">/api/gallery/list</code>
+                    </div>
+                    <p class="text-eh-text-muted text-sm mt-2">List all gallery downloads</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Archive Downloads -->
+        <section id="archive" class="mb-12">
+            <h3 class="text-xl font-bold text-eh-text mb-6 flex items-center">
+                <span class="text-eh-link mr-2">📦</span> Archive Downloads
+            </h3>
+            <p class="text-eh-text-muted mb-4">Download complete gallery ZIP archives.</p>
+
+            <!-- POST /api/archive/download -->
+            <div class="mb-6">
+                <div class="method-post rounded-lg p-4 mb-3">
+                    <div class="flex items-center gap-3">
+                        <span class="bg-eh-post text-eh-bg-dark text-xs font-bold px-2 py-1 rounded">POST</span>
+                        <code class="text-eh-text font-bold">/api/archive/download</code>
+                    </div>
+                    <p class="text-eh-text-muted text-sm mt-2">Queue an archive for download</p>
+                </div>
+
+                <div class="bg-eh-bg border border-eh-border rounded-lg p-4 mb-3">
+                    <h4 class="font-bold text-eh-text mb-2 text-sm">Request Body</h4>
+                    <pre class="text-sm overflow-x-auto"><code class="text-eh-text-muted"><span class="text-eh-success">// By URL (original quality)</span>
+{
+  "url": "https://e-hentai.org/g/1234567/abcdef1234/"
+}
+
+<span class="text-eh-success">// With resolution</span>
+{
+  "gallery_id": "1234567",
+  "gallery_token": "abcdef1234",
+  "resolution": "1280"
+}
+
+<span class="text-eh-success">// Available resolutions:</span>
+<span class="text-eh-success">// "org" - Original (highest quality)</span>
+<span class="text-eh-success">// "2400" - 2400px max</span>
+<span class="text-eh-success">// "1600" - 1600px max</span>
+<span class="text-eh-success">// "1280" - 1280px max</span>
+<span class="text-eh-success">// "980" - 980px max</span>
+<span class="text-eh-success">// "780" - 780px max</span></code></pre>
+                </div>
+            </div>
+
+            <!-- GET /api/archive/status/{id} -->
+            <div class="mb-6">
+                <div class="method-get rounded-lg p-4 mb-3">
+                    <div class="flex items-center gap-3">
+                        <span class="bg-eh-get text-eh-bg-dark text-xs font-bold px-2 py-1 rounded">GET</span>
+                        <code class="text-eh-text font-bold">/api/archive/status/{gallery_id}</code>
+                    </div>
+                    <p class="text-eh-text-muted text-sm mt-2">Get archive download status</p>
+                </div>
+                <div class="bg-eh-bg border border-eh-border rounded-lg p-4 mb-3">
+                    <h4 class="font-bold text-eh-text mb-2 text-sm">Query Parameters</h4>
+                    <ul class="text-eh-text-muted text-sm list-disc list-inside">
+                        <li><code class="text-eh-link">resolution</code> - Filter by resolution (optional)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- GET /api/archive/file/{id} -->
+            <div class="mb-6">
+                <div class="method-get rounded-lg p-4 mb-3">
+                    <div class="flex items-center gap-3">
+                        <span class="bg-eh-get text-eh-bg-dark text-xs font-bold px-2 py-1 rounded">GET</span>
+                        <code class="text-eh-text font-bold">/api/archive/file/{gallery_id}</code>
+                    </div>
+                    <p class="text-eh-text-muted text-sm mt-2">Download completed archive ZIP file</p>
+                </div>
+                <div class="bg-eh-bg border border-eh-border rounded-lg p-4">
+                    <h4 class="font-bold text-eh-text mb-2 text-sm">Example</h4>
+                    <pre class="text-sm overflow-x-auto"><code class="text-eh-text-muted">curl -O -J http://localhost:8080/api/archive/file/1234567</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bandwidth -->
+        <section id="bandwidth" class="mb-12">
+            <h3 class="text-xl font-bold text-eh-text mb-6 flex items-center">
+                <span class="text-eh-link mr-2">📈</span> Bandwidth
+            </h3>
+
+            <!-- GET /api/bandwidth -->
+            <div class="mb-6">
+                <div class="method-get rounded-lg p-4 mb-3">
+                    <div class="flex items-center gap-3">
+                        <span class="bg-eh-get text-eh-bg-dark text-xs font-bold px-2 py-1 rounded">GET</span>
+                        <code class="text-eh-text font-bold">/api/bandwidth</code>
+                    </div>
+                    <p class="text-eh-text-muted text-sm mt-2">Current bandwidth usage and limits</p>
+                </div>
+                <div class="bg-eh-bg border border-eh-border rounded-lg p-4">
+                    <h4 class="font-bold text-eh-text mb-2 text-sm">Response</h4>
+                    <pre class="text-sm overflow-x-auto"><code class="text-eh-text-muted">{
+  "success": true,
+  "data": {
+    "bytes_per_second": 1048576,
+    "bytes_this_hour": 3758096384,
+    "max_bytes_per_second": -1,
+    "max_bytes_per_hour": -1,
+    "is_throttled": false,
+    "server_throttle_bytes": -1
+  }
+}</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Error Responses -->
+        <section class="mb-12">
+            <h3 class="text-xl font-bold text-eh-text mb-6 flex items-center">
+                <span class="text-eh-link mr-2">⚠️</span> Error Responses
+            </h3>
+            <p class="text-eh-text-muted mb-4">All endpoints return errors in a consistent format:</p>
+
+            <div class="bg-eh-bg border border-eh-border rounded-lg p-4">
+                <pre class="text-sm overflow-x-auto"><code class="text-eh-text-muted">{
+  "success": false,
+  "error": "Error message describing what went wrong"
+}</code></pre>
+            </div>
+
+            <div class="mt-4 grid md:grid-cols-2 gap-4">
+                <div class="bg-eh-bg-dark border border-eh-border rounded-lg p-4">
+                    <h4 class="font-bold text-eh-text mb-2 text-sm">HTTP Status Codes</h4>
+                    <ul class="text-eh-text-muted text-sm space-y-1">
+                        <li><code class="text-eh-success">200</code> - Success</li>
+                        <li><code class="text-eh-warning">400</code> - Bad Request</li>
+                        <li><code class="text-eh-warning">404</code> - Not Found</li>
+                        <li><code class="text-eh-danger">500</code> - Server Error</li>
+                    </ul>
+                </div>
+                <div class="bg-eh-bg-dark border border-eh-border rounded-lg p-4">
+                    <h4 class="font-bold text-eh-text mb-2 text-sm">Common Errors</h4>
+                    <ul class="text-eh-text-muted text-sm space-y-1">
+                        <li>Gallery not found</li>
+                        <li>Invalid gallery URL</li>
+                        <li>Download already in progress</li>
+                        <li>ExHentai access required</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- cURL Examples -->
+        <section class="mb-12">
+            <h3 class="text-xl font-bold text-eh-text mb-6 flex items-center">
+                <span class="text-eh-link mr-2">💻</span> cURL Examples
+            </h3>
+
+            <pre class="bg-eh-bg border border-eh-border rounded-lg p-4 overflow-x-auto text-sm">
+<code class="text-eh-text-muted"><span class="text-eh-success"># Check health</span>
+curl http://localhost:8080/api/health
+
+<span class="text-eh-success"># Get full status</span>
+curl http://localhost:8080/api/status
+
+<span class="text-eh-success"># Queue gallery by URL</span>
+curl -X POST http://localhost:8080/api/gallery/download \
+  -H "Content-Type: application/json" \
+  -d '{"url": "https://e-hentai.org/g/1234567/abcdef1234/"}'
+
+<span class="text-eh-success"># Queue archive with resolution</span>
+curl -X POST http://localhost:8080/api/archive/download \
+  -H "Content-Type: application/json" \
+  -d '{"gallery_id": "1234567", "gallery_token": "abcdef1234", "resolution": "1280"}'
+
+<span class="text-eh-success"># Check download status</span>
+curl http://localhost:8080/api/gallery/status/1234567
+
+<span class="text-eh-success"># Download completed archive</span>
+curl -O -J http://localhost:8080/api/archive/file/1234567
+
+<span class="text-eh-success"># Get metrics</span>
+curl http://localhost:8080/api/metrics | jq</code></pre>
+        </section>
+
+        <!-- Back link -->
+        <section>
+            <div class="flex flex-wrap gap-4">
+                <a href="configuration.html" class="border border-eh-link text-eh-link hover:bg-eh-link hover:text-eh-bg-dark font-bold px-6 py-3 rounded transition-colors">
+                    ← Configuration
+                </a>
+                <a href="index.html" class="border border-eh-link text-eh-link hover:bg-eh-link hover:text-eh-bg-dark font-bold px-6 py-3 rounded transition-colors">
+                    Home
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-eh-header border-t border-eh-border py-8 mt-12">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="text-eh-text-muted text-sm mb-4 md:mb-0">
+                    © 2026 <a href="https://github.com/atristar3" class="text-eh-link hover:text-eh-link-hover">atristar3</a>
+                </div>
+                <div class="flex space-x-6 text-sm">
+                    <a href="https://github.com/atristar3/h-at-h-rs" class="text-eh-text-muted hover:text-eh-link">GitHub</a>
+                    <a href="https://github.com/atristar3/h-at-h-rs/releases" class="text-eh-text-muted hover:text-eh-link">Releases</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

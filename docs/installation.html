@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Installation - H@H-rs Documentation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'eh-bg': '#34353b',
+                        'eh-bg-dark': '#2a2b30',
+                        'eh-bg-light': '#3b3c42',
+                        'eh-header': '#43444a',
+                        'eh-border': '#4d4e53',
+                        'eh-text': '#f1f1f1',
+                        'eh-text-muted': '#b4b4b4',
+                        'eh-link': '#f5a623',
+                        'eh-link-hover': '#ffe082',
+                        'eh-accent': '#dd6b20',
+                        'eh-success': '#48bb78',
+                        'eh-info': '#4299e1',
+                        'eh-warning': '#ecc94b',
+                    },
+                    fontFamily: {
+                        'eh': ['Verdana', 'Geneva', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background: linear-gradient(180deg, #2a2b30 0%, #34353b 100%);
+        }
+        code { background: #2a2b30; padding: 2px 6px; border-radius: 3px; font-size: 0.875em; }
+        pre code { padding: 0; background: none; }
+        .step-number {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #f5a623 0%, #dd6b20 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #2a2b30;
+            flex-shrink: 0;
+        }
+    </style>
+</head>
+<body class="font-eh text-eh-text min-h-screen">
+    <!-- Header -->
+    <header class="bg-eh-header border-b-2 border-eh-link shadow-lg">
+        <div class="max-w-6xl mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <h1 class="text-2xl font-bold text-eh-link">H@H-rs</h1>
+                    <span class="text-eh-text-muted text-sm">Documentation</span>
+                </div>
+                <nav class="flex space-x-6 text-sm">
+                    <a href="index.html" class="text-eh-text-muted hover:text-eh-link">Home</a>
+                    <a href="installation.html" class="text-eh-link hover:text-eh-link-hover border-b-2 border-eh-link pb-1">Installation</a>
+                    <a href="configuration.html" class="text-eh-text-muted hover:text-eh-link">Configuration</a>
+                    <a href="api.html" class="text-eh-text-muted hover:text-eh-link">API</a>
+                    <a href="https://github.com/atristar3/h-at-h-rs" class="text-eh-text-muted hover:text-eh-link">GitHub ↗</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Content -->
+    <main class="max-w-4xl mx-auto px-4 py-12">
+        <h2 class="text-3xl font-bold text-eh-link mb-2">Installation</h2>
+        <p class="text-eh-text-muted mb-8">Multiple ways to install and run H@H-rs on your system.</p>
+
+        <!-- Prerequisites -->
+        <section class="mb-12">
+            <h3 class="text-xl font-bold text-eh-text mb-4 flex items-center">
+                <span class="text-eh-link mr-2">📋</span> Prerequisites
+            </h3>
+            <div class="bg-eh-bg-dark border border-eh-border rounded-lg p-6">
+                <p class="text-eh-text-muted mb-4">Before installing H@H-rs, you'll need:</p>
+                <ul class="list-disc list-inside text-eh-text-muted space-y-2">
+                    <li>A registered <strong class="text-eh-text">H@H client</strong> from the <a href="https://forums.e-hentai.org/" class="text-eh-link hover:text-eh-link-hover">E-Hentai forums</a></li>
+                    <li>Your <strong class="text-eh-text">Client ID</strong> and <strong class="text-eh-text">Client Key</strong></li>
+                    <li>Port forwarding configured on your router (default: <code class="text-eh-link">8080</code>)</li>
+                    <li>Sufficient disk space for caching (configurable, default: 100GB)</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Docker Installation -->
+        <section class="mb-12">
+            <h3 class="text-xl font-bold text-eh-text mb-4 flex items-center">
+                <span class="text-eh-link mr-2">🐳</span> Docker Installation (Recommended)
+            </h3>
+
+            <div class="space-y-6">
+                <!-- Step 1 -->
+                <div class="flex gap-4">
+                    <div class="step-number">1</div>
+                    <div class="flex-1">
+                        <h4 class="font-bold text-eh-text mb-2">Clone the Repository</h4>
+                        <pre class="bg-eh-bg border border-eh-border rounded-lg p-4 overflow-x-auto text-sm">
+<code class="text-eh-text-muted">git clone https://github.com/atristar3/h-at-h-rs.git
+cd h-at-h-rs</code></pre>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="flex gap-4">
+                    <div class="step-number">2</div>
+                    <div class="flex-1">
+                        <h4 class="font-bold text-eh-text mb-2">Configure Environment</h4>
+                        <pre class="bg-eh-bg border border-eh-border rounded-lg p-4 overflow-x-auto text-sm">
+<code class="text-eh-text-muted">cp .env.example .env
+
+<span class="text-eh-success"># Edit .env with your credentials</span>
+nano .env</code></pre>
+                        <p class="text-eh-text-muted text-sm mt-2">Set at minimum: <code class="text-eh-link">HAH_CLIENT_ID</code> and <code class="text-eh-link">HAH_CLIENT_KEY</code></p>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="flex gap-4">
+                    <div class="step-number">3</div>
+                    <div class="flex-1">
+                        <h4 class="font-bold text-eh-text mb-2">Create Data Directories</h4>
+                        <pre class="bg-eh-bg border border-eh-border rounded-lg p-4 overflow-x-auto text-sm">
+<code class="text-eh-text-muted">mkdir -p data/cache data/temp data/db</code></pre>
+                    </div>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="flex gap-4">
+                    <div class="step-number">4</div>
+                    <div class="flex-1">
+                        <h4 class="font-bold text-eh-text mb-2">Start the Container</h4>
+                        <pre class="bg-eh-bg border border-eh-border rounded-lg p-4 overflow-x-auto text-sm">
+<code class="text-eh-text-muted">docker-compose up -d
+
+<span class="text-eh-success"># View logs</span>
+docker-compose logs -f</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Alternative: Direct Docker Run -->
+            <div class="mt-6 bg-eh-bg-light border border-eh-border rounded-lg p-4">
+                <h4 class="font-bold text-eh-text mb-2">Alternative: Direct Docker Run</h4>
+                <pre class="bg-eh-bg border border-eh-border rounded-lg p-4 overflow-x-auto text-sm">
+<code class="text-eh-text-muted">docker run -d \
+  --name hah-rs \
+  --restart unless-stopped \
+  -p 8080:8080 \
+  -v $(pwd)/cache:/app/cache \
+  -v $(pwd)/db:/app/db \
+  -e HAH_CLIENT_ID=<span class="text-eh-link">your_client_id</span> \
+  -e HAH_CLIENT_KEY=<span class="text-eh-link">your_client_key</span> \
+  -e HAH_CACHE_SIZE_GB=100 \
+  ghcr.io/atristar3/h-at-h-rs:latest</code></pre>
+            </div>
+        </section>
+
+        <!-- Binary Installation -->
+        <section class="mb-12">
+            <h3 class="text-xl font-bold text-eh-text mb-4 flex items-center">
+                <span class="text-eh-link mr-2">📦</span> Binary Installation
+            </h3>
+
+            <p class="text-eh-text-muted mb-4">Pre-built binaries are available for major platforms.</p>
+
+            <!-- Download Links -->
+            <div class="grid md:grid-cols-2 gap-4 mb-6">
+                <a href="https://github.com/atristar3/h-at-h-rs/releases/latest/download/h-at-h-rs-linux-amd64.tar.gz"
+                   class="bg-eh-bg-dark border border-eh-border rounded-lg p-4 hover:border-eh-link transition-colors flex items-center">
+                    <span class="text-2xl mr-3">🐧</span>
+                    <div>
+                        <div class="font-bold text-eh-text">Linux (x86_64)</div>
+                        <div class="text-eh-text-muted text-sm">h-at-h-rs-linux-amd64.tar.gz</div>
+                    </div>
+                </a>
+                <a href="https://github.com/atristar3/h-at-h-rs/releases/latest/download/h-at-h-rs-linux-arm64.tar.gz"
+                   class="bg-eh-bg-dark border border-eh-border rounded-lg p-4 hover:border-eh-link transition-colors flex items-center">
+                    <span class="text-2xl mr-3">🐧</span>
+                    <div>
+                        <div class="font-bold text-eh-text">Linux (ARM64)</div>
+                        <div class="text-eh-text-muted text-sm">h-at-h-rs-linux-arm64.tar.gz</div>
+                    </div>
+                </a>
+                <a href="https://github.com/atristar3/h-at-h-rs/releases/latest/download/h-at-h-rs-macos-amd64.tar.gz"
+                   class="bg-eh-bg-dark border border-eh-border rounded-lg p-4 hover:border-eh-link transition-colors flex items-center">
+                    <span class="text-2xl mr-3">🍎</span>
+                    <div>
+                        <div class="font-bold text-eh-text">macOS (Intel)</div>
+                        <div class="text-eh-text-muted text-sm">h-at-h-rs-macos-amd64.tar.gz</div>
+                    </div>
+                </a>
+                <a href="https://github.com/atristar3/h-at-h-rs/releases/latest/download/h-at-h-rs-macos-arm64.tar.gz"
+                   class="bg-eh-bg-dark border border-eh-border rounded-lg p-4 hover:border-eh-link transition-colors flex items-center">
+                    <span class="text-2xl mr-3">🍎</span>
+                    <div>
+                        <div class="font-bold text-eh-text">macOS (Apple Silicon)</div>
+                        <div class="text-eh-text-muted text-sm">h-at-h-rs-macos-arm64.tar.gz</div>
+                    </div>
+                </a>
+                <a href="https://github.com/atristar3/h-at-h-rs/releases/latest/download/h-at-h-rs-windows-amd64.zip"
+                   class="bg-eh-bg-dark border border-eh-border rounded-lg p-4 hover:border-eh-link transition-colors flex items-center">
+                    <span class="text-2xl mr-3">🪟</span>
+                    <div>
+                        <div class="font-bold text-eh-text">Windows (x86_64)</div>
+                        <div class="text-eh-text-muted text-sm">h-at-h-rs-windows-amd64.zip</div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Installation Steps -->
+            <div class="space-y-4">
+                <pre class="bg-eh-bg border border-eh-border rounded-lg p-4 overflow-x-auto text-sm">
+<code class="text-eh-text-muted"><span class="text-eh-success"># Download for your platform (example: Linux x86_64)</span>
+curl -LO https://github.com/atristar3/h-at-h-rs/releases/latest/download/h-at-h-rs-linux-amd64.tar.gz
+
+<span class="text-eh-success"># Extract</span>
+tar xzf h-at-h-rs-linux-amd64.tar.gz
+
+<span class="text-eh-success"># Make executable (Linux/macOS)</span>
+chmod +x h-at-h-rs
+
+<span class="text-eh-success"># Run</span>
+./h-at-h-rs --client-id <span class="text-eh-link">YOUR_ID</span> --client-key <span class="text-eh-link">YOUR_KEY</span></code></pre>
+            </div>
+        </section>
+
+        <!-- Build from Source -->
+        <section class="mb-12">
+            <h3 class="text-xl font-bold text-eh-text mb-4 flex items-center">
+                <span class="text-eh-link mr-2">🔧</span> Build from Source
+            </h3>
+
+            <p class="text-eh-text-muted mb-4">Requires <a href="https://www.rust-lang.org/tools/install" class="text-eh-link hover:text-eh-link-hover">Rust 1.75+</a></p>
+
+            <pre class="bg-eh-bg border border-eh-border rounded-lg p-4 overflow-x-auto text-sm">
+<code class="text-eh-text-muted"><span class="text-eh-success"># Install Rust (if not already installed)</span>
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+<span class="text-eh-success"># Clone repository</span>
+git clone https://github.com/atristar3/h-at-h-rs.git
+cd h-at-h-rs
+
+<span class="text-eh-success"># Build release binary</span>
+cargo build --release
+
+<span class="text-eh-success"># Binary is at ./target/release/h-at-h-rs</span>
+./target/release/h-at-h-rs --help</code></pre>
+        </section>
+
+        <!-- Verification -->
+        <section class="mb-12">
+            <h3 class="text-xl font-bold text-eh-text mb-4 flex items-center">
+                <span class="text-eh-link mr-2">✅</span> Verify Installation
+            </h3>
+
+            <div class="bg-eh-bg-dark border border-eh-border rounded-lg p-6">
+                <p class="text-eh-text-muted mb-4">After starting the client, verify it's working:</p>
+
+                <pre class="bg-eh-bg border border-eh-border rounded-lg p-4 overflow-x-auto text-sm mb-4">
+<code class="text-eh-text-muted"><span class="text-eh-success"># Check health endpoint</span>
+curl http://localhost:8080/api/health
+
+<span class="text-eh-success"># Check client status</span>
+curl http://localhost:8080/api/status</code></pre>
+
+                <p class="text-eh-text-muted text-sm">You should see JSON responses indicating the client is running and connected to the H@H network.</p>
+            </div>
+        </section>
+
+        <!-- Next Steps -->
+        <section>
+            <h3 class="text-xl font-bold text-eh-text mb-4 flex items-center">
+                <span class="text-eh-link mr-2">➡️</span> Next Steps
+            </h3>
+            <div class="flex flex-wrap gap-4">
+                <a href="configuration.html" class="bg-eh-link hover:bg-eh-accent text-eh-bg-dark font-bold px-6 py-3 rounded transition-colors">
+                    Configure H@H-rs →
+                </a>
+                <a href="api.html" class="border border-eh-link text-eh-link hover:bg-eh-link hover:text-eh-bg-dark font-bold px-6 py-3 rounded transition-colors">
+                    Explore the API
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-eh-header border-t border-eh-border py-8 mt-12">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="text-eh-text-muted text-sm mb-4 md:mb-0">
+                    © 2026 <a href="https://github.com/atristar3" class="text-eh-link hover:text-eh-link-hover">atristar3</a>
+                </div>
+                <div class="flex space-x-6 text-sm">
+                    <a href="https://github.com/atristar3/h-at-h-rs" class="text-eh-text-muted hover:text-eh-link">GitHub</a>
+                    <a href="https://github.com/atristar3/h-at-h-rs/releases" class="text-eh-text-muted hover:text-eh-link">Releases</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

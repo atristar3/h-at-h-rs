@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configuration - H@H-rs Documentation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'eh-bg': '#34353b',
+                        'eh-bg-dark': '#2a2b30',
+                        'eh-bg-light': '#3b3c42',
+                        'eh-header': '#43444a',
+                        'eh-border': '#4d4e53',
+                        'eh-text': '#f1f1f1',
+                        'eh-text-muted': '#b4b4b4',
+                        'eh-link': '#f5a623',
+                        'eh-link-hover': '#ffe082',
+                        'eh-accent': '#dd6b20',
+                        'eh-success': '#48bb78',
+                        'eh-info': '#4299e1',
+                        'eh-warning': '#ecc94b',
+                        'eh-danger': '#fc8181',
+                    },
+                    fontFamily: {
+                        'eh': ['Verdana', 'Geneva', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background: linear-gradient(180deg, #2a2b30 0%, #34353b 100%);
+        }
+        .eh-table tr:nth-child(even) { background-color: #2a2b30; }
+        .eh-table tr:nth-child(odd) { background-color: #34353b; }
+        .eh-table tr:hover { background-color: #43444a; }
+        code { background: #2a2b30; padding: 2px 6px; border-radius: 3px; font-size: 0.875em; }
+        pre code { padding: 0; background: none; }
+    </style>
+</head>
+<body class="font-eh text-eh-text min-h-screen">
+    <!-- Header -->
+    <header class="bg-eh-header border-b-2 border-eh-link shadow-lg">
+        <div class="max-w-6xl mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <h1 class="text-2xl font-bold text-eh-link">H@H-rs</h1>
+                    <span class="text-eh-text-muted text-sm">Documentation</span>
+                </div>
+                <nav class="flex space-x-6 text-sm">
+                    <a href="index.html" class="text-eh-text-muted hover:text-eh-link">Home</a>
+                    <a href="installation.html" class="text-eh-text-muted hover:text-eh-link">Installation</a>
+                    <a href="configuration.html" class="text-eh-link hover:text-eh-link-hover border-b-2 border-eh-link pb-1">Configuration</a>
+                    <a href="api.html" class="text-eh-text-muted hover:text-eh-link">API</a>
+                    <a href="https://github.com/atristar3/h-at-h-rs" class="text-eh-text-muted hover:text-eh-link">GitHub ↗</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Content -->
+    <main class="max-w-6xl mx-auto px-4 py-12">
+        <h2 class="text-3xl font-bold text-eh-link mb-2">Configuration</h2>
+        <p class="text-eh-text-muted mb-8">All configuration options for H@H-rs via environment variables or CLI flags.</p>
+
+        <!-- Quick Navigation -->
+        <nav class="bg-eh-bg-dark border border-eh-border rounded-lg p-4 mb-8">
+            <h3 class="font-bold text-eh-text mb-3">Quick Navigation</h3>
+            <div class="flex flex-wrap gap-3 text-sm">
+                <a href="#required" class="text-eh-link hover:text-eh-link-hover">Required →</a>
+                <a href="#network" class="text-eh-link hover:text-eh-link-hover">Network & Storage →</a>
+                <a href="#bandwidth" class="text-eh-link hover:text-eh-link-hover">Bandwidth →</a>
+                <a href="#features" class="text-eh-link hover:text-eh-link-hover">Features →</a>
+                <a href="#exhentai" class="text-eh-link hover:text-eh-link-hover">ExHentai →</a>
+                <a href="#logging" class="text-eh-link hover:text-eh-link-hover">Logging →</a>
+            </div>
+        </nav>
+
+        <!-- Required Settings -->
+        <section id="required" class="mb-12">
+            <h3 class="text-xl font-bold text-eh-text mb-4 flex items-center">
+                <span class="text-eh-danger mr-2">*</span> Required Settings
+            </h3>
+            <p class="text-eh-text-muted mb-4">These settings are mandatory for the client to connect to the H@H network.</p>
+
+            <div class="overflow-x-auto">
+                <table class="eh-table w-full border border-eh-border rounded-lg overflow-hidden text-sm">
+                    <thead class="bg-eh-header">
+                        <tr>
+                            <th class="px-4 py-3 text-left text-eh-text font-bold border-b border-eh-border">Environment Variable</th>
+                            <th class="px-4 py-3 text-left text-eh-text font-bold border-b border-eh-border">CLI Flag</th>
+                            <th class="px-4 py-3 text-left text-eh-text font-bold border-b border-eh-border">Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="px-4 py-3"><code class="text-eh-link">HAH_CLIENT_ID</code></td>
+                            <td class="px-4 py-3 text-eh-text-muted"><code>--client-id</code></td>
+                            <td class="px-4 py-3 text-eh-text-muted">Your H@H client ID (numeric)</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-3"><code class="text-eh-link">HAH_CLIENT_KEY</code></td>
+                            <td class="px-4 py-3 text-eh-text-muted"><code>--client-key</code></td>
+                            <td class="px-4 py-3 text-eh-text-muted">Your H@H client key (alphanumeric)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Warning Box -->
+            <div class="mt-4 bg-eh-bg border-l-4 border-eh-warning rounded-r-lg p-4">
+                <p class="text-eh-text font-bold mb-1">⚠️ Security Notice</p>
+                <p class="text-eh-text-muted text-sm">Never commit your credentials to version control. Use <code>.env</code> files (gitignored) or Docker secrets for production deployments.</p>
+            </div>
+        </section>
+
+        <!-- Network & Storage -->
+        <section id="network" class="mb-12">
+            <h3 class="text-xl font-bold text-eh-text mb-4 flex items-center">
+                <span class="text-eh-link mr-2">🌐</span> Network & Storage
+            </h3>
+
+            <div class="overflow-x-auto">
+                <table class="eh-table w-full border border-eh-border rounded-lg overflow-hidden text-sm">
+                    <thead class="bg-eh-header">
+                        <tr>
+                            <th class="px-4 py-3 text-left text-eh-text font-bold border-b border-eh-border">Environment Variable</th>
+                            <th class="px-4 py-3 text-left text-eh-text font-bold border-b border-eh-border">Default</th>
+                            <th class="px-4 py-3 text-left text-eh-text font-bold border-b border-eh-border">Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="px-4 py-3"><code class="text-eh-link">HAH_PORT</code></td>
+                            <td class="px-4 py-3 text-eh-text-muted">8080</td>
+                            <td class="px-4 py-3 text-eh-text-muted">Port to listen on for file requests</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-3"><code class="text-eh-link">HAH_BIND_ADDRESS</code></td>
+                            <td class="px-4 py-3 text-eh-text-muted">0.0.0.0</td>
+                            <td class="px-4 py-3 text-eh-text-muted">Address to bind the server to</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-3"><code class="text-eh-link">HAH_CACHE_DIR</code></td>
+                            <td class="px-4 py-3 text-eh-text-muted">./cache</td>
+                            <td class="px-4 py-3 text-eh-text-muted">Directory for cached files</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-3"><code class="text-eh-link">HAH_CACHE_SIZE_GB</code></td>
+                            <td class="px-4 py-3 text-eh-text-muted">100</td>
+                            <td class="px-4 py-3 text-eh-text-muted">Maximum cache size in gigabytes</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-3"><code class="text-eh-link">HAH_MIN_FREE_SPACE_GB</code></td>
+                            <td class="px-4 py-3 text-eh-text-muted">5</td>
+                            <td class="px-4 py-3 text-eh-text-muted">Minimum disk space to keep free</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-3"><code class="text-eh-link">HAH_REQUEST_TIMEOUT</code></td>
+                            <td class="px-4 py-3 text-eh-text-muted">30</td>
+                            <td class="px-4 py-3 text-eh-text-muted">HTTP request timeout in seconds</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Bandwidth Settings -->
+        <section id="bandwidth" class="mb-12">
+            <h3 class="text-xl font-bold text-eh-text mb-4 flex items-center">
+                <span class="text-eh-link mr-2">📊</span> Bandwidth Throttling
+            </h3>
+            <p class="text-eh-text-muted mb-4">Control upload/download speeds and bandwidth quotas.</p>
+
+            <div class="overflow-x-auto">
+                <table class="eh-table w-full border border-eh-border rounded-lg overflow-hidden text-sm">
+                    <thead class="bg-eh-header">
+                        <tr>
+                            <th class="px-4 py-3 text-left text-eh-text font-bold border-b border-eh-border">Environment Variable</th>
+                            <th class="px-4 py-3 text-left text-eh-text font-bold border-b border-eh-border">Default</th>
+                            <th class="px-4 py-3 text-left text-eh-text font-bold border-b border-eh-border">Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="px-4 py-3"><code class="text-eh-link">HAH_MAX_UPLOAD_SPEED</code></td>
+                            <td class="px-4 py-3 text-eh-text-muted">-1</td>
+                            <td class="px-4 py-3 text-eh-text-muted">Maximum upload speed in KB/s (-1 = unlimited)</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-3"><code class="text-eh-link">HAH_MAX_DOWNLOAD_SPEED</code></td>
+                            <td class="px-4 py-3 text-eh-text-muted">-1</td>
+                            <td class="px-4 py-3 text-eh-text-muted">Maximum download speed in KB/s (-1 = unlimited)</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-3"><code class="text-eh-link">HAH_MAX_HOURLY_BANDWIDTH</code></td>
+                            <td class="px-4 py-3 text-eh-text-muted">-1</td>
+                            <td class="px-4 py-3 text-eh-text-muted">Maximum hourly bandwidth in MB (-1 = unlimited)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Example -->
+            <div class="mt-4 bg-eh-bg-dark border border-eh-border rounded-lg p-4">
+                <h4 class="font-bold text-eh-text mb-2">Example: Limit to 10 Mbps upload</h4>
+                <pre class="text-sm text-eh-text-muted"><code>HAH_MAX_UPLOAD_SPEED=1250  <span class="text-eh-success"># 1250 KB/s ≈ 10 Mbps</span></code></pre>
+            </div>
+        </section>
+
+        <!-- Features -->
+        <section id="features" class="mb-12">
+            <h3 class="text-xl font-bold text-eh-text mb-4 flex items-center">
+                <span class="text-eh-link mr-2">⚙️</span> Features
+            </h3>
+
+            <div class="overflow-x-auto">
+                <table class="eh-table w-full border border-eh-border rounded-lg overflow-hidden text-sm">
+                    <thead class="bg-eh-header">
+                        <tr>
+                            <th class="px-4 py-3 text-left text-eh-text font-bold border-b border-eh-border">Environment Variable</th>
+                            <th class="px-4 py-3 text-left text-eh-text font-bold border-b border-eh-border">Default</th>
+                            <th class="px-4 py-3 text-left text-eh-text font-bold border-b border-eh-border">Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="px-4 py-3"><code class="text-eh-link">HAH_STATIC_RANGES</code></td>
+                            <td class="px-4 py-3 text-eh-text-muted">false</td>
+                            <td class="px-4 py-3 text-eh-text-muted">Enable static range proactive caching</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-3"><code class="text-eh-link">HAH_PROXY_MODE</code></td>
+                            <td class="px-4 py-3 text-eh-text-muted">false</td>
+                            <td class="px-4 py-3 text-eh-text-muted">Forward requests for uncached files</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-3"><code class="text-eh-link">HAH_GALLERY_DOWNLOAD</code></td>
+                            <td class="px-4 py-3 text-eh-text-muted">true</td>
+                            <td class="px-4 py-3 text-eh-text-muted">Enable gallery download API</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-3"><code class="text-eh-link">HAH_DOWNLOAD_WORKERS</code></td>
+                            <td class="px-4 py-3 text-eh-text-muted">4</td>
+                            <td class="px-4 py-3 text-eh-text-muted">Number of concurrent download workers</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-3"><code class="text-eh-link">HAH_ENABLE_METRICS</code></td>
+                            <td class="px-4 py-3 text-eh-text-muted">true</td>
+                            <td class="px-4 py-3 text-eh-text-muted">Enable metrics collection</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-3"><code class="text-eh-link">HAH_TUI</code></td>
+                            <td class="px-4 py-3 text-eh-text-muted">false</td>
+                            <td class="px-4 py-3 text-eh-text-muted">Enable terminal UI dashboard</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- ExHentai Access -->
+        <section id="exhentai" class="mb-12">
+            <h3 class="text-xl font-bold text-eh-text mb-4 flex items-center">
+                <span class="text-eh-link mr-2">🔐</span> ExHentai Access
+            </h3>
+            <p class="text-eh-text-muted mb-4">To access ExHentai content, provide your browser cookies.</p>
+
+            <div class="overflow-x-auto">
+                <table class="eh-table w-full border border-eh-border rounded-lg overflow-hidden text-sm">
+                    <thead class="bg-eh-header">
+                        <tr>
+                            <th class="px-4 py-3 text-left text-eh-text font-bold border-b border-eh-border">Environment Variable</th>
+                            <th class="px-4 py-3 text-left text-eh-text font-bold border-b border-eh-border">Cookie Name</th>
+                            <th class="px-4 py-3 text-left text-eh-text font-bold border-b border-eh-border">Required</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="px-4 py-3"><code class="text-eh-link">HAH_EXHENTAI_MEMBER_ID</code></td>
+                            <td class="px-4 py-3 text-eh-text-muted">ipb_member_id</td>
+                            <td class="px-4 py-3"><span class="text-eh-success">Yes</span></td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-3"><code class="text-eh-link">HAH_EXHENTAI_PASS_HASH</code></td>
+                            <td class="px-4 py-3 text-eh-text-muted">ipb_pass_hash</td>
+                            <td class="px-4 py-3"><span class="text-eh-success">Yes</span></td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-3"><code class="text-eh-link">HAH_EXHENTAI_IGNEOUS</code></td>
+                            <td class="px-4 py-3 text-eh-text-muted">igneous</td>
+                            <td class="px-4 py-3"><span class="text-eh-text-muted">Optional</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- How to get cookies -->
+            <div class="mt-4 bg-eh-bg-dark border border-eh-border rounded-lg p-4">
+                <h4 class="font-bold text-eh-text mb-2">How to get your cookies:</h4>
+                <ol class="list-decimal list-inside text-eh-text-muted text-sm space-y-1">
+                    <li>Log in to exhentai.org in your browser</li>
+                    <li>Open Developer Tools (F12) → Application → Cookies</li>
+                    <li>Copy the values for <code>ipb_member_id</code>, <code>ipb_pass_hash</code>, and optionally <code>igneous</code></li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- Logging -->
+        <section id="logging" class="mb-12">
+            <h3 class="text-xl font-bold text-eh-text mb-4 flex items-center">
+                <span class="text-eh-link mr-2">📝</span> Logging
+            </h3>
+
+            <div class="overflow-x-auto">
+                <table class="eh-table w-full border border-eh-border rounded-lg overflow-hidden text-sm">
+                    <thead class="bg-eh-header">
+                        <tr>
+                            <th class="px-4 py-3 text-left text-eh-text font-bold border-b border-eh-border">Environment Variable</th>
+                            <th class="px-4 py-3 text-left text-eh-text font-bold border-b border-eh-border">Default</th>
+                            <th class="px-4 py-3 text-left text-eh-text font-bold border-b border-eh-border">Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="px-4 py-3"><code class="text-eh-link">HAH_LOG_LEVEL</code></td>
+                            <td class="px-4 py-3 text-eh-text-muted">info</td>
+                            <td class="px-4 py-3 text-eh-text-muted">Log level: trace, debug, info, warn, error</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-3"><code class="text-eh-link">HAH_LOG_JSON</code></td>
+                            <td class="px-4 py-3 text-eh-text-muted">false</td>
+                            <td class="px-4 py-3 text-eh-text-muted">Output logs in JSON format</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-3"><code class="text-eh-link">RUST_LOG</code></td>
+                            <td class="px-4 py-3 text-eh-text-muted">—</td>
+                            <td class="px-4 py-3 text-eh-text-muted">Standard Rust log filter (overrides HAH_LOG_LEVEL)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Example .env file -->
+        <section class="mb-12">
+            <h3 class="text-xl font-bold text-eh-text mb-4 flex items-center">
+                <span class="text-eh-link mr-2">📄</span> Example .env File
+            </h3>
+
+            <pre class="bg-eh-bg border border-eh-border rounded-lg p-4 overflow-x-auto text-sm">
+<code class="text-eh-text-muted"><span class="text-eh-success"># Required</span>
+HAH_CLIENT_ID=<span class="text-eh-link">123456</span>
+HAH_CLIENT_KEY=<span class="text-eh-link">abcdef1234567890</span>
+
+<span class="text-eh-success"># Network</span>
+HAH_PORT=8080
+HAH_CACHE_DIR=/data/hah/cache
+HAH_CACHE_SIZE_GB=200
+
+<span class="text-eh-success"># Bandwidth (optional)</span>
+HAH_MAX_UPLOAD_SPEED=2500    <span class="text-eh-text-muted"># ~20 Mbps</span>
+HAH_MAX_HOURLY_BANDWIDTH=-1  <span class="text-eh-text-muted"># Unlimited</span>
+
+<span class="text-eh-success"># Features</span>
+HAH_STATIC_RANGES=true
+HAH_GALLERY_DOWNLOAD=true
+
+<span class="text-eh-success"># ExHentai (optional)</span>
+HAH_EXHENTAI_MEMBER_ID=<span class="text-eh-link">your_member_id</span>
+HAH_EXHENTAI_PASS_HASH=<span class="text-eh-link">your_pass_hash</span>
+
+<span class="text-eh-success"># Logging</span>
+HAH_LOG_LEVEL=info</code></pre>
+        </section>
+
+        <!-- Next Steps -->
+        <section>
+            <h3 class="text-xl font-bold text-eh-text mb-4 flex items-center">
+                <span class="text-eh-link mr-2">➡️</span> Next Steps
+            </h3>
+            <div class="flex flex-wrap gap-4">
+                <a href="api.html" class="bg-eh-link hover:bg-eh-accent text-eh-bg-dark font-bold px-6 py-3 rounded transition-colors">
+                    Explore the REST API →
+                </a>
+                <a href="installation.html" class="border border-eh-link text-eh-link hover:bg-eh-link hover:text-eh-bg-dark font-bold px-6 py-3 rounded transition-colors">
+                    ← Back to Installation
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-eh-header border-t border-eh-border py-8 mt-12">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="text-eh-text-muted text-sm mb-4 md:mb-0">
+                    © 2026 <a href="https://github.com/atristar3" class="text-eh-link hover:text-eh-link-hover">atristar3</a>
+                </div>
+                <div class="flex space-x-6 text-sm">
+                    <a href="https://github.com/atristar3/h-at-h-rs" class="text-eh-text-muted hover:text-eh-link">GitHub</a>
+                    <a href="https://github.com/atristar3/h-at-h-rs/releases" class="text-eh-text-muted hover:text-eh-link">Releases</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

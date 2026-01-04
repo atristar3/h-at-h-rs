@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>H@H-rs Documentation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'eh-bg': '#34353b',
+                        'eh-bg-dark': '#2a2b30',
+                        'eh-bg-light': '#3b3c42',
+                        'eh-header': '#43444a',
+                        'eh-border': '#4d4e53',
+                        'eh-text': '#f1f1f1',
+                        'eh-text-muted': '#b4b4b4',
+                        'eh-link': '#f5a623',
+                        'eh-link-hover': '#ffe082',
+                        'eh-accent': '#dd6b20',
+                        'eh-success': '#48bb78',
+                        'eh-info': '#4299e1',
+                    },
+                    fontFamily: {
+                        'eh': ['Verdana', 'Geneva', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background: linear-gradient(180deg, #2a2b30 0%, #34353b 100%);
+        }
+        .eh-table tr:nth-child(even) { background-color: #2a2b30; }
+        .eh-table tr:nth-child(odd) { background-color: #34353b; }
+        .eh-table tr:hover { background-color: #43444a; }
+        code { background: #2a2b30; padding: 2px 6px; border-radius: 3px; font-size: 0.875em; }
+        pre code { padding: 0; background: none; }
+        .eh-card { background: linear-gradient(135deg, #3b3c42 0%, #34353b 100%); }
+    </style>
+</head>
+<body class="font-eh text-eh-text min-h-screen">
+    <!-- Header -->
+    <header class="bg-eh-header border-b-2 border-eh-link shadow-lg">
+        <div class="max-w-6xl mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <h1 class="text-2xl font-bold text-eh-link">H@H-rs</h1>
+                    <span class="text-eh-text-muted text-sm">Documentation</span>
+                </div>
+                <nav class="flex space-x-6 text-sm">
+                    <a href="index.html" class="text-eh-link hover:text-eh-link-hover border-b-2 border-eh-link pb-1">Home</a>
+                    <a href="installation.html" class="text-eh-text-muted hover:text-eh-link">Installation</a>
+                    <a href="configuration.html" class="text-eh-text-muted hover:text-eh-link">Configuration</a>
+                    <a href="api.html" class="text-eh-text-muted hover:text-eh-link">API</a>
+                    <a href="https://github.com/atristar3/h-at-h-rs" class="text-eh-text-muted hover:text-eh-link">GitHub ↗</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="bg-eh-bg-dark border-b border-eh-border">
+        <div class="max-w-6xl mx-auto px-4 py-12">
+            <div class="text-center">
+                <h2 class="text-4xl font-bold text-eh-text mb-4">Hentai@Home Client for Rust</h2>
+                <p class="text-eh-text-muted text-lg max-w-2xl mx-auto mb-8">
+                    A high-performance, fully-compatible H@H client implementation with Docker support,
+                    gallery downloading, and modern infrastructure features.
+                </p>
+                <div class="flex justify-center space-x-4">
+                    <a href="installation.html" class="bg-eh-link hover:bg-eh-accent text-eh-bg-dark font-bold px-6 py-3 rounded transition-colors">
+                        Get Started →
+                    </a>
+                    <a href="https://github.com/atristar3/h-at-h-rs/releases" class="border border-eh-link text-eh-link hover:bg-eh-link hover:text-eh-bg-dark font-bold px-6 py-3 rounded transition-colors">
+                        Download
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Grid -->
+    <section class="py-12">
+        <div class="max-w-6xl mx-auto px-4">
+            <h3 class="text-2xl font-bold text-eh-link mb-8 text-center">Features</h3>
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- Feature Card 1 -->
+                <div class="eh-card border border-eh-border rounded-lg p-6 hover:border-eh-link transition-colors">
+                    <div class="text-eh-link text-3xl mb-4">⚡</div>
+                    <h4 class="text-lg font-bold text-eh-text mb-2">Full Protocol Support</h4>
+                    <p class="text-eh-text-muted text-sm">
+                        100% compatible with the official H@H protocol. Server authentication,
+                        heartbeat, static ranges, and all server commands.
+                    </p>
+                </div>
+
+                <!-- Feature Card 2 -->
+                <div class="eh-card border border-eh-border rounded-lg p-6 hover:border-eh-link transition-colors">
+                    <div class="text-eh-link text-3xl mb-4">📥</div>
+                    <h4 class="text-lg font-bold text-eh-text mb-2">Gallery Downloads</h4>
+                    <p class="text-eh-text-muted text-sm">
+                        Download galleries page-by-page or as ZIP archives. Supports multiple
+                        resolutions and ExHentai access.
+                    </p>
+                </div>
+
+                <!-- Feature Card 3 -->
+                <div class="eh-card border border-eh-border rounded-lg p-6 hover:border-eh-link transition-colors">
+                    <div class="text-eh-link text-3xl mb-4">🐳</div>
+                    <h4 class="text-lg font-bold text-eh-text mb-2">Docker Ready</h4>
+                    <p class="text-eh-text-muted text-sm">
+                        Easy deployment with Docker and docker-compose. Multi-arch images
+                        for amd64 and arm64 available on GHCR.
+                    </p>
+                </div>
+
+                <!-- Feature Card 4 -->
+                <div class="eh-card border border-eh-border rounded-lg p-6 hover:border-eh-link transition-colors">
+                    <div class="text-eh-link text-3xl mb-4">🖥️</div>
+                    <h4 class="text-lg font-bold text-eh-text mb-2">Terminal UI</h4>
+                    <p class="text-eh-text-muted text-sm">
+                        Built-in terminal dashboard for real-time monitoring. View stats,
+                        downloads, cache info, and logs.
+                    </p>
+                </div>
+
+                <!-- Feature Card 5 -->
+                <div class="eh-card border border-eh-border rounded-lg p-6 hover:border-eh-link transition-colors">
+                    <div class="text-eh-link text-3xl mb-4">📡</div>
+                    <h4 class="text-lg font-bold text-eh-text mb-2">REST API</h4>
+                    <p class="text-eh-text-muted text-sm">
+                        Full REST API for monitoring and control. Queue downloads, check
+                        status, and view metrics programmatically.
+                    </p>
+                </div>
+
+                <!-- Feature Card 6 -->
+                <div class="eh-card border border-eh-border rounded-lg p-6 hover:border-eh-link transition-colors">
+                    <div class="text-eh-link text-3xl mb-4">🚀</div>
+                    <h4 class="text-lg font-bold text-eh-text mb-2">High Performance</h4>
+                    <p class="text-eh-text-muted text-sm">
+                        Written in Rust for maximum performance. Optimized hash lookups,
+                        concurrent downloads, and low memory usage.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Start -->
+    <section class="py-12 bg-eh-bg-dark border-t border-b border-eh-border">
+        <div class="max-w-6xl mx-auto px-4">
+            <h3 class="text-2xl font-bold text-eh-link mb-8">Quick Start</h3>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Docker -->
+                <div>
+                    <h4 class="text-lg font-bold text-eh-text mb-4 flex items-center">
+                        <span class="text-eh-link mr-2">🐳</span> Using Docker
+                    </h4>
+                    <pre class="bg-eh-bg border border-eh-border rounded-lg p-4 overflow-x-auto text-sm">
+<code class="text-eh-text-muted"><span class="text-eh-success"># Pull the image</span>
+docker pull ghcr.io/atristar3/h-at-h-rs:latest
+
+<span class="text-eh-success"># Run with your credentials</span>
+docker run -d \
+  --name hah-rs \
+  -p 8080:8080 \
+  -v ./cache:/app/cache \
+  -e HAH_CLIENT_ID=<span class="text-eh-link">your_id</span> \
+  -e HAH_CLIENT_KEY=<span class="text-eh-link">your_key</span> \
+  ghcr.io/atristar3/h-at-h-rs:latest</code></pre>
+                </div>
+
+                <!-- Binary -->
+                <div>
+                    <h4 class="text-lg font-bold text-eh-text mb-4 flex items-center">
+                        <span class="text-eh-link mr-2">📦</span> Using Binary
+                    </h4>
+                    <pre class="bg-eh-bg border border-eh-border rounded-lg p-4 overflow-x-auto text-sm">
+<code class="text-eh-text-muted"><span class="text-eh-success"># Download latest release</span>
+curl -LO https://github.com/atristar3/\
+h-at-h-rs/releases/latest/download/\
+h-at-h-rs-linux-amd64.tar.gz
+
+<span class="text-eh-success"># Extract and run</span>
+tar xzf h-at-h-rs-linux-amd64.tar.gz
+./h-at-h-rs \
+  --client-id <span class="text-eh-link">your_id</span> \
+  --client-key <span class="text-eh-link">your_key</span></code></pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison Table -->
+    <section class="py-12">
+        <div class="max-w-6xl mx-auto px-4">
+            <h3 class="text-2xl font-bold text-eh-link mb-8">Feature Comparison</h3>
+
+            <div class="overflow-x-auto">
+                <table class="eh-table w-full border border-eh-border rounded-lg overflow-hidden text-sm">
+                    <thead class="bg-eh-header">
+                        <tr>
+                            <th class="px-4 py-3 text-left text-eh-text font-bold border-b border-eh-border">Feature</th>
+                            <th class="px-4 py-3 text-center text-eh-text font-bold border-b border-eh-border">H@H-rs</th>
+                            <th class="px-4 py-3 text-center text-eh-text font-bold border-b border-eh-border">Java Client</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="px-4 py-3 text-eh-text-muted">Full Protocol Support</td>
+                            <td class="px-4 py-3 text-center text-eh-success">✓</td>
+                            <td class="px-4 py-3 text-center text-eh-success">✓</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-3 text-eh-text-muted">Static Range Assignments</td>
+                            <td class="px-4 py-3 text-center text-eh-success">✓</td>
+                            <td class="px-4 py-3 text-center text-eh-success">✓</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-3 text-eh-text-muted">H@H Download Queue</td>
+                            <td class="px-4 py-3 text-center text-eh-success">✓</td>
+                            <td class="px-4 py-3 text-center text-eh-success">✓</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-3 text-eh-text-muted">Docker Support</td>
+                            <td class="px-4 py-3 text-center text-eh-success">✓</td>
+                            <td class="px-4 py-3 text-center text-eh-text-muted">—</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-3 text-eh-text-muted">REST API</td>
+                            <td class="px-4 py-3 text-center text-eh-success">✓</td>
+                            <td class="px-4 py-3 text-center text-eh-text-muted">—</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-3 text-eh-text-muted">Terminal UI (TUI)</td>
+                            <td class="px-4 py-3 text-center text-eh-success">✓</td>
+                            <td class="px-4 py-3 text-center text-eh-text-muted">—</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-3 text-eh-text-muted">Gallery Web Scraper</td>
+                            <td class="px-4 py-3 text-center text-eh-success">✓</td>
+                            <td class="px-4 py-3 text-center text-eh-text-muted">—</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-3 text-eh-text-muted">Memory Usage</td>
+                            <td class="px-4 py-3 text-center text-eh-link">~50MB</td>
+                            <td class="px-4 py-3 text-center text-eh-text-muted">~200MB</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-eh-header border-t border-eh-border py-8 mt-12">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="text-eh-text-muted text-sm mb-4 md:mb-0">
+                    © 2026 <a href="https://github.com/atristar3" class="text-eh-link hover:text-eh-link-hover">atristar3</a>
+                </div>
+                <div class="flex space-x-6 text-sm">
+                    <a href="https://github.com/atristar3/h-at-h-rs" class="text-eh-text-muted hover:text-eh-link">GitHub</a>
+                    <a href="https://github.com/atristar3/h-at-h-rs/releases" class="text-eh-text-muted hover:text-eh-link">Releases</a>
+                </div>
+            </div>
+            <div class="text-center text-eh-text-muted text-xs mt-4">
+                This is an unofficial implementation. Not affiliated with E-Hentai or Hentai@Home.
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
