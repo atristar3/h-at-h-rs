@@ -11,18 +11,18 @@ use crate::hath_downloader::HathDownloader;
 use crate::metrics::MetricsCollector;
 use crate::throttle::BandwidthThrottler;
 use axum::{
+    Json, Router,
     body::Body,
     extract::{Path, Query, State},
-    http::{header, HeaderMap, StatusCode},
+    http::{HeaderMap, StatusCode, header},
     response::{IntoResponse, Response},
     routing::{get, post},
-    Json, Router,
 };
 use dashmap::DashMap;
 use regex::Regex;
 use serde::{Deserialize, Serialize};
-use std::sync::atomic::{AtomicI64, Ordering};
 use std::sync::Arc;
+use std::sync::atomic::{AtomicI64, Ordering};
 use std::time::Instant;
 use tokio::fs;
 use tower_http::cors::{Any, CorsLayer};
@@ -759,7 +759,7 @@ async fn queue_gallery_download(
             None => {
                 return Json(ApiResponse::<serde_json::Value>::error(
                     "Invalid gallery URL",
-                ))
+                ));
             }
         }
     } else {
@@ -768,7 +768,7 @@ async fn queue_gallery_download(
             _ => {
                 return Json(ApiResponse::<serde_json::Value>::error(
                     "Missing gallery_id or gallery_token",
-                ))
+                ));
             }
         }
     };
@@ -859,7 +859,7 @@ async fn get_gallery_info(
             None => {
                 return Json(ApiResponse::<serde_json::Value>::error(
                     "Invalid gallery URL",
-                ))
+                ));
             }
         }
     } else {
@@ -868,7 +868,7 @@ async fn get_gallery_info(
             _ => {
                 return Json(ApiResponse::<serde_json::Value>::error(
                     "Missing parameters",
-                ))
+                ));
             }
         }
     };
@@ -899,7 +899,7 @@ async fn queue_archive_download(
             None => {
                 return Json(ApiResponse::<serde_json::Value>::error(
                     "Invalid gallery URL",
-                ))
+                ));
             }
         }
     } else {
@@ -908,7 +908,7 @@ async fn queue_archive_download(
             _ => {
                 return Json(ApiResponse::<serde_json::Value>::error(
                     "Missing gallery_id or gallery_token",
-                ))
+                ));
             }
         }
     };

@@ -6,7 +6,7 @@
 use crate::config::Config;
 use anyhow::Result;
 use regex::Regex;
-use reqwest::{cookie::Jar, Client, Url};
+use reqwest::{Client, Url, cookie::Jar};
 use scraper::{Html, Selector};
 use serde::{Deserialize, Serialize};
 use sqlx::{Pool, Sqlite};

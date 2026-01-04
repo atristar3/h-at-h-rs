@@ -4,20 +4,20 @@
 //! cache statistics, bandwidth usage, and download progress.
 
 use crate::cache::CacheStats;
-use crate::metrics::{format_bytes, format_duration, HahMetrics};
+use crate::metrics::{HahMetrics, format_bytes, format_duration};
 use crate::throttle::BandwidthStats;
 use crossterm::{
     event::{self, DisableMouseCapture, EnableMouseCapture, Event, KeyCode, KeyEventKind},
     execute,
-    terminal::{disable_raw_mode, enable_raw_mode, EnterAlternateScreen, LeaveAlternateScreen},
+    terminal::{EnterAlternateScreen, LeaveAlternateScreen, disable_raw_mode, enable_raw_mode},
 };
 use ratatui::{
+    Frame, Terminal,
     backend::CrosstermBackend,
     layout::{Constraint, Direction, Layout, Rect},
     style::{Color, Modifier, Style, Stylize},
     text::{Line, Span},
     widgets::{Block, Borders, Gauge, List, ListItem, Paragraph, Row, Sparkline, Table, Tabs},
-    Frame, Terminal,
 };
 use std::collections::VecDeque;
 use std::io;

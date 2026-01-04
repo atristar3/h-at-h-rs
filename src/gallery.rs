@@ -7,7 +7,7 @@ use crate::cache::CacheManager;
 use crate::config::Config;
 use anyhow::{Context, Result};
 use regex::Regex;
-use reqwest::{cookie::Jar, Client, Url};
+use reqwest::{Client, Url, cookie::Jar};
 use scraper::{Html, Selector};
 use serde::{Deserialize, Serialize};
 use std::collections::HashSet;

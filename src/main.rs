@@ -36,7 +36,7 @@ use crate::config::{Args, Config};
 use crate::gallery::GalleryDownloader;
 use crate::hath_downloader::HathDownloader;
 use crate::metrics::MetricsCollector;
-use crate::server::{start_server, AppState, FileVerificationTracker, FloodControl};
+use crate::server::{AppState, FileVerificationTracker, FloodControl, start_server};
 use crate::static_ranges::StaticRangeManager;
 use crate::throttle::BandwidthThrottler;
 use crate::tui::TuiData;
@@ -47,7 +47,7 @@ use std::time::Duration;
 use tokio::signal;
 use tokio::sync::broadcast;
 use tracing::{error, info, warn};
-use tracing_subscriber::{layer::SubscriberExt, util::SubscriberInitExt, EnvFilter};
+use tracing_subscriber::{EnvFilter, layer::SubscriberExt, util::SubscriberInitExt};
 
 #[tokio::main]
 async fn main() -> Result<()> {
