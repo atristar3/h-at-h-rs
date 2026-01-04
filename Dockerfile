@@ -6,7 +6,7 @@
 # -----------------------------------------------------------------------------
 # Stage 1: Build the Rust application
 # -----------------------------------------------------------------------------
-FROM rust:latest AS builder
+FROM rust:bookworm AS builder
 
 # Install build dependencies
 RUN apt-get update && apt-get install -y \
@@ -20,11 +20,13 @@ WORKDIR /app
 # Copy dependency files first (for better layer caching)
 COPY Cargo.toml Cargo.lock* ./
 
-# Create a dummy main.rs to build dependencies
-RUN mkdir src && echo "fn main() {}" > src/main.rs
+# Create dummy source files to build dependencies (including benches for Cargo.toml parsing)
+RUN mkdir -p src benches && \
+    echo "fn main() {}" > src/main.rs && \
+    echo "fn main() {}" > benches/benchmarks.rs
 
 # Build dependencies only (this layer will be cached)
-RUN cargo build --release && rm -rf src target/release/deps/h_at_h_rs*
+RUN cargo build --release && rm -rf src benches target/release/deps/h_at_h_rs*
 
 # Copy the actual source code
 COPY src ./src
