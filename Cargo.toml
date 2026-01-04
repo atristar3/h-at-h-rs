@@ -93,10 +93,6 @@ regex = "1.10"
 # HTML parsing for gallery scraping
 scraper = "0.18"
 
-# Unix-specific utilities (for disk space checks)
-[target.'cfg(unix)'.dependencies]
-nix = { version = "0.27", features = ["fs"] }
-
 # TUI (Terminal User Interface)
 ratatui = "0.29"
 crossterm = "0.28"

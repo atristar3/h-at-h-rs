@@ -28,6 +28,7 @@ RUN cargo build --release && rm -rf src target/release/deps/h_at_h_rs*
 
 # Copy the actual source code
 COPY src ./src
+COPY benches ./benches
 
 # Build the final binary
 RUN cargo build --release

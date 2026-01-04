@@ -584,7 +584,7 @@ impl ArchiveDownloader {
             downloaded += chunk.len() as u64;
 
             // Update progress periodically (every 1MB)
-            if downloaded % (1024 * 1024) == 0 || downloaded == content_length {
+            if downloaded.is_multiple_of(1024 * 1024) || downloaded == content_length {
                 let _ = sqlx::query(
                     "UPDATE archive_downloads SET downloaded_bytes = ?, updated_at = ? WHERE gallery_id = ? AND resolution = ?",
                 )
@@ -848,7 +848,7 @@ impl ArchiveDownloader {
             downloaded += chunk.len() as u64;
 
             // Update progress every 1MB
-            if downloaded % (1024 * 1024) == 0 {
+            if downloaded.is_multiple_of(1024 * 1024) {
                 let _ = sqlx::query(
                     "UPDATE archive_downloads SET downloaded_bytes = ?, updated_at = ? WHERE gallery_id = ? AND resolution = ?",
                 )

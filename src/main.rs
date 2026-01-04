@@ -16,6 +16,8 @@
 
 // Allow dead code for public API methods not used internally
 #![allow(dead_code)]
+// Allow nested if statements - clearer than let-chains in many cases
+#![allow(clippy::collapsible_if)]
 
 mod api;
 mod archive;
