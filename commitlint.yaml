@@ -1,0 +1,104 @@
+# Conventional Commits configuration for h-at-h-rs
+# https://www.conventionalcommits.org/
+
+rules:
+  # Type rules
+  type-enum:
+    level: 2
+    applicable: always
+    value:
+      - build    # Changes to build system or dependencies
+      - chore    # Other changes that don't modify src or test files
+      - ci       # Changes to CI configuration files and scripts
+      - docs     # Documentation only changes
+      - feat     # A new feature
+      - fix      # A bug fix
+      - perf     # A code change that improves performance
+      - refactor # A code change that neither fixes a bug nor adds a feature
+      - revert   # Reverts a previous commit
+      - style    # Changes that do not affect the meaning of the code
+      - test     # Adding missing tests or correcting existing tests
+
+  type-case:
+    level: 2
+    applicable: always
+    value:
+      - lower-case
+
+  type-empty:
+    level: 2
+    applicable: never
+
+  # Scope rules
+  scope-case:
+    level: 2
+    applicable: always
+    value:
+      - lower-case
+
+  scope-enum:
+    level: 1
+    applicable: always
+    value:
+      - api       # H@H API client
+      - archive   # Archive downloading
+      - cache     # Cache management
+      - ci        # CI/CD configuration
+      - config    # Configuration handling
+      - deps      # Dependencies
+      - docker    # Docker configuration
+      - download  # Download queue
+      - gallery   # Gallery downloading
+      - http      # HTTP server
+      - proxy     # Proxy functionality
+      - range     # Static range handling
+      - tui       # Terminal UI
+      - throttle  # Bandwidth throttling
+
+  # Subject rules
+  subject-case:
+    level: 2
+    applicable: always
+    value:
+      - lower-case
+      - sentence-case
+
+  subject-empty:
+    level: 2
+    applicable: never
+
+  subject-full-stop:
+    level: 2
+    applicable: never
+    value: "."
+
+  # Header rules
+  header-max-length:
+    level: 2
+    applicable: always
+    value: 100
+
+  header-full-stop:
+    level: 2
+    applicable: never
+    value: "."
+
+  # Body rules
+  body-leading-blank:
+    level: 2
+    applicable: always
+
+  body-max-line-length:
+    level: 2
+    applicable: always
+    value: 100
+
+  # Footer rules
+  footer-leading-blank:
+    level: 2
+    applicable: always
+
+  footer-max-line-length:
+    level: 2
+    applicable: always
+    value: 100
