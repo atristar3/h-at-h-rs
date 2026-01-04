@@ -14,7 +14,7 @@
       <img src="https://img.shields.io/badge/license-MIT%2FApache--2.0-blue" alt="License">
     </a>
     <a href="https://github.com/atristar3/h-at-h-rs">
-      <img src="https://img.shields.io/badge/rust-1.80+-orange.svg" alt="Rust Version">
+      <img src="https://img.shields.io/badge/rust-1.85+-orange.svg" alt="Rust Version">
     </a>
     <a href="https://ghcr.io/atristar3/h-at-h-rs">
       <img src="https://img.shields.io/badge/docker-ghcr.io-blue" alt="Docker">
@@ -112,7 +112,7 @@ docker-compose up -d
 ### Building from Source
 
 ```bash
-# Requires Rust 1.80+
+# Requires Rust 1.85+
 cargo install --git https://github.com/atristar3/h-at-h-rs
 
 # Or build locally

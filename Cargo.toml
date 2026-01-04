@@ -2,7 +2,7 @@
 name = "h-at-h-rs"
 version = "0.1.0"
 edition = "2024"
-rust-version = "1.80"
+rust-version = "1.85"
 authors = ["atristar3"]
 description = "A high-performance Hentai@Home client written in Rust with full protocol support, gallery downloading, and Docker deployment"
 license = "MIT OR Apache-2.0"
