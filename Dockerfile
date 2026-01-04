@@ -6,7 +6,7 @@
 # -----------------------------------------------------------------------------
 # Stage 1: Build the Rust application
 # -----------------------------------------------------------------------------
-FROM rust:1.75-slim-bookworm AS builder
+FROM rust:1.80-slim-bookworm AS builder
 
 # Install build dependencies
 RUN apt-get update && apt-get install -y \
@@ -40,6 +40,7 @@ FROM debian:bookworm-slim AS runtime
 # Install runtime dependencies
 RUN apt-get update && apt-get install -y \
     ca-certificates \
+    curl \
     libssl3 \
     tini \
     && rm -rf /var/lib/apt/lists/*

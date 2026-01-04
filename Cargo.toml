@@ -1,8 +1,8 @@
 [package]
 name = "h-at-h-rs"
 version = "0.1.0"
-edition = "2021"
-rust-version = "1.75"
+edition = "2024"
+rust-version = "1.80"
 authors = ["atristar3"]
 description = "A high-performance Hentai@Home client written in Rust with full protocol support, gallery downloading, and Docker deployment"
 license = "MIT OR Apache-2.0"
@@ -92,6 +92,10 @@ regex = "1.10"
 
 # HTML parsing for gallery scraping
 scraper = "0.18"
+
+# Unix-specific utilities (for disk space checks)
+[target.'cfg(unix)'.dependencies]
+nix = { version = "0.27", features = ["fs"] }
 
 # TUI (Terminal User Interface)
 ratatui = "0.29"
